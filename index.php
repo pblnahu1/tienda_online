@@ -1,6 +1,7 @@
 <?php
 include('global/config.php');
 include('global/conexion.php');
+include('carrito.php');
 ?>
 
 <!DOCTYPE html>
@@ -41,8 +42,8 @@ include('global/conexion.php');
     <br>
     <!-- b-alert -->
     <div class="alert alert-success" role="alert">
-      Pantalla de Mensaje...
-      <?php print_r($_POST); //Para saber si mis datos están siendo encriptados... ?>
+      <?php // print_r($_POST); //Para saber si mis datos están siendo encriptados... ?>
+      <?php echo $mensaje; ?>
       <a href="#" class="btn btn-success">Ver carrito</a>
     </div>
 
