@@ -1,5 +1,7 @@
 <?php
 
+session_start(); // Variable de sesión q tendrán datos durante la navegación del usuario
+
 $mensaje = "";
 
 if (isset($_POST['btnAccion'])) {
@@ -35,6 +37,26 @@ if (isset($_POST['btnAccion'])) {
         $mensaje = "Error. PRECIO Incorrecto";
         break;
       }
+
+      if(!isset($_SESSION['CARRITO'])){
+        $producto = array(
+          'ID'=>$ID,
+          'NOMBRE'=>$NOMBRE,
+          'CANTIDAD'=>$CANTIDAD,
+          'PRECIO'=>$PRECIO
+        );
+        $_SESSION['CARRITO'][0] = $producto; //En el carrito agrego desde la primer posición los productos
+      }else{
+        $numeroProductos = count($_SESSION['CARRITO']);
+        $producto = array(
+          'ID'=>$ID,
+          'NOMBRE'=>$NOMBRE,
+          'CANTIDAD'=>$CANTIDAD,
+          'PRECIO'=>$PRECIO
+        );
+        $_SESSION['CARRITO'][$numeroProductos] = $producto;
+      }
+      $mensaje = print_r($_SESSION, true);
       break;
   }
 }
