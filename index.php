@@ -8,12 +8,13 @@ include('templates/cabecera.php');
 
 <br>
 <!-- b-alert -->
+<?php if($mensaje!=""){ ?>
 <div class="alert alert-success" role="alert">
-  <?php // print_r($_POST); //Para saber si mis datos están siendo encriptados... 
-  ?>
+  <?php // print_r($_POST); //Para saber si mis datos están siendo encriptados...?>
   <?php echo $mensaje; ?>
-  <a href="#" class="btn btn-success">Ver carrito</a>
+  <a href="mostrar_carrito.php" class="btn btn-success">Ver carrito</a>
 </div>
+<?php } ?>
 
 <!-- b-row -->
 <div class="row">
