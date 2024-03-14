@@ -38,25 +38,39 @@ if (isset($_POST['btnAccion'])) {
         break;
       }
 
-      if(!isset($_SESSION['CARRITO'])){
+      if (!isset($_SESSION['CARRITO'])) {
         $producto = array(
-          'ID'=>$ID,
-          'NOMBRE'=>$NOMBRE,
-          'CANTIDAD'=>$CANTIDAD,
-          'PRECIO'=>$PRECIO
+          'ID' => $ID,
+          'NOMBRE' => $NOMBRE,
+          'CANTIDAD' => $CANTIDAD,
+          'PRECIO' => $PRECIO
         );
         $_SESSION['CARRITO'][0] = $producto; //En el carrito agrego desde la primer posición los productos
-      }else{
+      } else {
         $numeroProductos = count($_SESSION['CARRITO']);
         $producto = array(
-          'ID'=>$ID,
-          'NOMBRE'=>$NOMBRE,
-          'CANTIDAD'=>$CANTIDAD,
-          'PRECIO'=>$PRECIO
+          'ID' => $ID,
+          'NOMBRE' => $NOMBRE,
+          'CANTIDAD' => $CANTIDAD,
+          'PRECIO' => $PRECIO
         );
         $_SESSION['CARRITO'][$numeroProductos] = $producto;
       }
       $mensaje = print_r($_SESSION, true);
+      break;
+    case "Eliminar":
+      if(is_numeric(openssl_decrypt($_POST['id'], COD, KEY))){
+        $ID = openssl_decrypt($_POST['id'], COD, KEY);
+        foreach($_SESSION['CARRITO'] as $indice=>$producto){
+          if($producto['ID'] == $ID) {
+            unset($_SESSION['CARRITO'][$indice]);
+            echo  "<script>alert('Elemento borrado...')</script>";
+          }
+        }
+        $mensaje .= "OK. ID Correcto: " . $ID . "<br/>";
+      } else {
+        $mensaje = "Error. ID Incorrecto: " . $ID . "<br/>";
+      }
       break;
   }
 }

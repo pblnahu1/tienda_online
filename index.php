@@ -33,18 +33,15 @@ include('templates/cabecera.php');
           <span><?php echo $producto['nombre']; ?></span>
           <h5 class="card-title"><?php echo $producto['precio']; ?></h5>
           <p class="card-text"><?php echo $producto['descripcion']; ?></p>
-
           <form action="" method="post">
             <!-- Encriptando datos -->
-            <input type="text" name="id" id="id" value="<?php echo openssl_encrypt($producto['id_producto'], COD, KEY); ?>">
-            <input type="text" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'], COD, KEY); ?>">
-            <input type="text" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'], COD, KEY); ?>">
-            <input type="text" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY); ?>">
+            <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($producto['id_producto'], COD, KEY); ?>">
+            <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'], COD, KEY); ?>">
+            <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'], COD, KEY); ?>">
+            <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY); ?>">
 
             <button class="btn btn-primary" name="btnAccion" value="Agregar" type="submit">Agregar al carrito</button>
           </form>
-
-
         </div>
       </div>
     </div>

@@ -20,13 +20,18 @@ include('templates/cabecera.php');
       <?php $total = 0; ?>
       <?php foreach ($_SESSION['CARRITO'] as $indixe => $producto) { ?>
         <tr>
-          <th width="40%"><?php echo $producto['NOMBRE']; ?></th>
-          <th width="15%" class="text-center"><?php echo $producto['CANTIDAD']; ?></th>
-          <th width="20%" class="text-center">$<?php echo $producto['PRECIO']; ?></th>
-          <th width="20%" class="text-center">$<?php echo number_format($producto['PRECIO'] * $producto['CANTIDAD'], 2); ?></th>
-          <th width="5%"><button class="btn btn-danger" type="button">Eliminar</button></th>
+          <td width="40%"><?php echo $producto['NOMBRE']; ?></td>
+          <td width="15%" class="text-center"><?php echo $producto['CANTIDAD']; ?></td>
+          <td width="20%" class="text-center">$<?php echo $producto['PRECIO']; ?></td>
+          <td width="20%" class="text-center">$<?php echo number_format($producto['PRECIO'] * $producto['CANTIDAD'], 2); ?></td>
+          <td width="5%">
+            <form action="" method="post">
+              <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($producto['ID'], COD, KEY); ?>">
+              <button class="btn btn-danger" name="btnAccion" value="Eliminar" type="submit">Eliminar</button>
+            </form>
+          </td>
         </tr>
-      <?php $total = $total + ($producto['PRECIO'] * $producto['CANTIDAD']); ?>
+        <?php $total = $total + ($producto['PRECIO'] * $producto['CANTIDAD']); ?>
       <?php } ?>
       <tr>
         <td colspan="3" align="right">
