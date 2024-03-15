@@ -19,3 +19,15 @@ INSERT INTO tblproductos (nombre, precio, descripcion, imagen) VALUES ("Learning
 * Learn how to achieve reactivity and easily compose views with Vue.js and understand what it does behind the scenes.
 * Explore the core features of Vue.js with small examples, learn how to build dynamic content into preexisting web applications, and build Vue.js applications from scratch.
 ", "https://m.media-amazon.com/images/I/41GXQZ5TmQL._SX342_SY445_.jpg ");
+
+
+CREATE TABLE IF NOT EXISTS tblVentas(
+    id INT NOT NULL AUTO_INCREMENT,
+    claveTransaccion VARCHAR(250) NOT NULL,
+    paypalDatos TEXT NOT NULL,
+    fecha DATETIME NOT NULL,
+    correo VARCHAR(5000) NOT NULL,
+    total DECIMAL(60,2) NOT NULL,
+    status VARCHAR(200),
+    PRIMARY KEY(id)
+);
