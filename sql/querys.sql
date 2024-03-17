@@ -33,3 +33,31 @@ CREATE TABLE IF NOT EXISTS tblVentas(
 );
 
 -- INSERT INTO tblVentas (`id`, `claveTransaccion`, `paypalDatos`, `fecha`, `correo`, `total`, `status`) VALUES (NULL, '12345678910', '', '2018-10-01 00:00:00', 'torrezpablo25@gmail.com', 700, 'pendiente');
+
+
+CREATE TABLE IF NOT EXISTS tblDetalleVenta(
+    id INT NOT NULL AUTO_INCREMENT,
+    idVenta INT,
+    idProducto INT,
+    preciounitario DECIMAL(20,2) NOT NULL, 
+    cantidad INT NOT NULL,
+    descargado INT(1) NOT NULL,
+    PRIMARY KEY(id)
+);
+
+ALTER TABLE `tbldetalleventa` ADD FOREIGN KEY (`idVenta`) REFERENCES `tblventas`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `tbldetalleventa` ADD FOREIGN KEY(`idProducto`) REFERENCES `tblproductos`(`id_producto`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `tbldetalleventa` DROP INDEX `idVenta`;
+ALTER TABLE `tbldetalleventa` DROP INDEX `idProducto`;  
+
+# ALTER TABLE `tbldetalleventa` CHANGE `idVenta` `idVenta` INT(11) NULL;
+# ALTER TABLE `tbldetalleventa` CHANGE `idProducto` `idProducto` INT(11) NULL;
+
+ALTER TABLE `tbldetalleventa` MODIFY COLUMN `idVenta` INT NOT NULL;
+ALTER TABLE `tbldetalleventa` MODIFY COLUMN `idProducto` INT NOT NULL;
+
+-- Para insertar, deben existir el ID en la tabla 'tblVentas' y el ID en la tabla 'tblproductos'
+INSERT INTO `tbldetalleventa` (`id`, `idVenta`, `idProducto`, `preciounitario`, `cantidad`, `descargado`)
+VALUES(NULL, '6', '1', '1000', '1', '0');
