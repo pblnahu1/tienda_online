@@ -31,3 +31,5 @@ CREATE TABLE IF NOT EXISTS tblVentas(
     status VARCHAR(200),
     PRIMARY KEY(id)
 );
+
+-- INSERT INTO tblVentas (`id`, `claveTransaccion`, `paypalDatos`, `fecha`, `correo`, `total`, `status`) VALUES (NULL, '12345678910', '', '2018-10-01 00:00:00', 'torrezpablo25@gmail.com', 700, 'pendiente');
